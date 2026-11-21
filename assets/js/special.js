@@ -15,7 +15,6 @@
   let grab = null;
   const step = 1 / 90;
 
-  // Rasterize just the ink area. The inline marker measures the real text baseline.
   function seed() {
     const bounds = letters.getBoundingClientRect();
     const box = windowBox.getBoundingClientRect();
@@ -41,7 +40,6 @@
         const py = bounds.top - box.top + y - 2;
         const across = 2 * (x - 2) / bounds.width - 1;
         const down = 2 * (y - 2) / bounds.height - 1;
-        // Neighboring dots launch together so the strokes fan out in small sheets.
         const vx = burstSpeed * (across + 0.24 * Math.sin(across * 11));
         const vy = burstSpeed * (down * 0.65 - 0.33 + 0.18 * Math.cos(across * 14));
         points.push({ x: px, y: py, oldX: px, oldY: py,
@@ -93,7 +91,6 @@
     p.x = Math.max(radius, Math.min(width - radius, p.x));
     p.y = Math.max(navBottom + radius, Math.min(height - radius, p.y));
 
-    // The arrow stays solid as the rest of the ceiling slides away.
     const left = arrowLeft - radius, bottom = arrowBottom + radius;
     if (p.x > left && p.y < bottom) {
       if (p.x - left < bottom - p.y) p.x = left;
@@ -115,8 +112,6 @@
       p.vy += gravity * step;
     }
     if (grab && grab.drops.length) {
-      // A soft pull inside the scoop lets drops slosh. A stronger pull outside
-      // its natural radius helps the trailing water catch up on fast turns.
       const scoopRadius = spacing * Math.sqrt(grab.drops.length / Math.PI);
       const damping = Math.exp(-10 * step);
       for (const p of grab.drops) {
@@ -138,8 +133,6 @@
       p.y += p.vy * step;
     }
 
-    // Separate overlaps at the original sampling distance. Rebuild the neighbor
-    // grid each pass so pressure can propagate through a letter as it lands.
     for (let pass = 0; pass < 3; pass++) {
       heads.fill(-1);
       for (let i = 0; i < particles.length; i++) {
@@ -168,7 +161,6 @@
                 p.y -= sy; q.y += sy;
               }
               if (pass === 2) {
-                // Viscosity transfers momentum between drops traveling together.
                 const mix = 0.08 * (1 - d / reach);
                 const vx = (q.vx - p.vx) * mix, vy = (q.vy - p.vy) * mix;
                 p.smoothX += vx; q.smoothX -= vx;
@@ -181,7 +173,6 @@
     }
     for (const p of particles) {
       confine(p, radius);
-      // Carry only part of the separation correction into the next step.
       p.vx += ((p.x - p.oldX) / step - p.vx) * 0.8;
       p.vy += ((p.y - p.oldY) / step - p.vy) * 0.8;
       p.vx += p.smoothX;
@@ -193,7 +184,6 @@
       if (p.y < arrowBottom + radius && p.x === arrowLeft - radius) p.vx = Math.min(0, p.vx);
       if (p.x === right) p.vx = Math.min(0, p.vx);
       if (p.x === radius) p.vx = Math.max(0, p.vx);
-      // Shallow water loses momentum to the bottom as the wave subsides.
       const bottomFriction = Math.max(0, 1 - (floor - p.y) / (spacing * 8));
       const drag = 0.998 - 0.055 * bottomFriction;
       const scale = drag * Math.min(1, speedLimit / (Math.hypot(p.vx, p.vy) || 1));
@@ -238,7 +228,6 @@
     } else {
       const points = seed();
       if (!points.length) return;
-      // Configure the canvas before assigning the freshly measured coordinates.
       size();
       particles = points;
       lastTime = elapsed = 0;
