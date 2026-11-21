@@ -3,7 +3,9 @@
   const letters = windowBox.querySelector(".name-letters");
   const baseline = windowBox.querySelector(".name-baseline");
   const canvas = windowBox.querySelector("canvas");
-  const button = windowBox.querySelector("button");
+  const button = windowBox.querySelector(".water-toggle");
+  const nav = windowBox.querySelector(".topnav");
+  const arrow = windowBox.querySelector("#navhider");
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
@@ -77,6 +79,28 @@
     heads = new Int32Array(columns * (Math.ceil(height / (spacing * interactionRange)) + 2));
   }
 
+  let navBottom = 0, arrowLeft = 0, arrowBottom = 0;
+
+  function readHeaderBounds() {
+    const box = canvas.getBoundingClientRect();
+    const toggle = arrow.getBoundingClientRect();
+    navBottom = Math.max(0, nav.getBoundingClientRect().bottom - box.top);
+    arrowLeft = toggle.left - box.left;
+    arrowBottom = toggle.bottom - box.top;
+  }
+
+  function confine(p, radius) {
+    p.x = Math.max(radius, Math.min(width - radius, p.x));
+    p.y = Math.max(navBottom + radius, Math.min(height - radius, p.y));
+
+    // The arrow stays solid as the rest of the ceiling slides away.
+    const left = arrowLeft - radius, bottom = arrowBottom + radius;
+    if (p.x > left && p.y < bottom) {
+      if (p.x - left < bottom - p.y) p.x = left;
+      else p.y = bottom;
+    }
+  }
+
   function advance() {
     const reach = spacing * interactionRange;
     const radius = spacing * 0.64;
@@ -120,8 +144,7 @@
       heads.fill(-1);
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        p.x = Math.max(radius, Math.min(right, p.x));
-        p.y = Math.max(radius, Math.min(floor, p.y));
+        confine(p, radius);
         p.cell = (Math.floor(p.y / reach) + 1) * columns + Math.floor(p.x / reach) + 1;
         p.next = heads[p.cell];
         heads[p.cell] = i;
@@ -157,15 +180,17 @@
       }
     }
     for (const p of particles) {
-      p.x = Math.max(radius, Math.min(right, p.x));
-      p.y = Math.max(radius, Math.min(floor, p.y));
+      confine(p, radius);
       // Carry only part of the separation correction into the next step.
       p.vx += ((p.x - p.oldX) / step - p.vx) * 0.8;
       p.vy += ((p.y - p.oldY) / step - p.vy) * 0.8;
       p.vx += p.smoothX;
       p.vy += p.smoothY;
       if (p.y === floor) p.vy = Math.min(0, p.vy);
-      if (p.y === radius) p.vy = Math.max(0, p.vy);
+      if (p.y === navBottom + radius || (p.x > arrowLeft - radius && p.y === arrowBottom + radius)) {
+        p.vy = Math.max(0, p.vy);
+      }
+      if (p.y < arrowBottom + radius && p.x === arrowLeft - radius) p.vx = Math.min(0, p.vx);
       if (p.x === right) p.vx = Math.min(0, p.vx);
       if (p.x === radius) p.vx = Math.max(0, p.vx);
       // Shallow water loses momentum to the bottom as the wave subsides.
@@ -192,6 +217,7 @@
   }
 
   function animate(time) {
+    readHeaderBounds();
     elapsed += lastTime ? Math.min(0.034, (time - lastTime) / 1000) : 0;
     lastTime = time;
     while (elapsed >= step) {

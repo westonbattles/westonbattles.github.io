@@ -122,9 +122,18 @@ to hidden meaning if text goes off the screen, it wont be shown */
   isolation: isolate;
   display: grid;
   place-items: center;
-  height: 36.62vw;
+  grid-template-rows: auto 36.62vw;
   overflow: hidden;
 }
+
+.name-window .site-header {
+  place-self: stretch;
+  min-height: var(--nav-toggle-size);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.name-window .topnav:not([inert]), .name-window #navhider { pointer-events: auto; }
 
 .name-window + .graybox { margin-top: 0; }
 
@@ -162,6 +171,6 @@ to hidden meaning if text goes off the screen, it wont be shown */
 .water-toggle:focus-visible { outline: 3px solid white; outline-offset: 3px; }
 
 @media (max-width: 670px) {
-  .name-window { height: max(148px, 33.62vw); }
+  .name-window { grid-template-rows: auto max(148px, 33.62vw); }
   .wrap:has(.name-window) .topnavtext a { padding: 14px clamp(3px, 1.4vw, 10px); }
 }
