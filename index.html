@@ -4,15 +4,16 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=7">
     <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
     <title>Home</title>
 
     <script type="text/javascript"
         src="assets/js/jquery-3.7.1.min.js">
     </script>
-    <script src="assets/js/navigation.js" defer></script>
-    <script src="assets/js/special.js" defer></script>
+    <script src="assets/js/navigation.js?v=2" defer></script>
+    <script src="assets/js/special.js?v=2" defer></script>
+    <script src="assets/js/about.js" defer></script>
 
   </head>
   <body>
@@ -33,15 +34,41 @@
             <path d="M12 2.8c-1.8 3.2-7 8.4-7 12a7 7 0 0 0 14 0c0-3.6-5.2-8.8-7-12Z"/>
             <path d="M8.5 15.2a3.6 3.6 0 0 0 3.1 3.4"/>
           </svg>
+          <span class="water-hint" aria-hidden="true"><span class="water-hint-arrow">←</span><span class="water-hint-word"><span>T</span><span>r</span><span>y</span></span><span class="water-hint-word"><span>m</span><span>e</span><span>!</span></span></span>
         </button>
       </section>
 
-      <!-- Everything inside the dark-gray box of the website goes here -->
-      <div class="graybox" id="graybox">
+      <main class="graybox home-about" id="graybox">
+        <div class="about-inner">
+          <div class="about-intro">
+            <h2>About me</h2>
+            <p class="about-copy">Hey! I'm Weston, and I'm a <span id="about-age"></span>CS student at the <span>University of Oregon</span></p>
+          </div>
+
+          <div class="about-details">
+            <section class="detail-group" aria-labelledby="skills-heading">
+              <h3 id="skills-heading">Technical skills</h3>
+              <ul class="detail-list">
+                <li>C++</li><li>C#</li><li>Rust</li><li>Python</li>
+              </ul>
+            </section>
+            <section class="detail-group" aria-labelledby="interests-heading">
+              <h3 id="interests-heading">Interests</h3>
+              <ul class="detail-list">
+                <li>Game dev</li><li>Linear algebra</li>
+              </ul>
+            </section>
+          </div>
+        </div>
 
 
+        <div id="about-contact-pngs">
+          <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/weston-battles-131373219/"><img src="assets/img/linkedin.png" id="contact-linkedin" alt="LinkedIn"></a>
+          <a target="_blank" rel="noopener noreferrer" href="https://github.com/westonbattles/"><img src="assets/img/github.png" id="contact-github" alt="GitHub"></a>
+          <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/westonbattles/"><img src="assets/img/twitter.png" id="contact-twitter" alt="Twitter"></a>
+        </div>
 
-      </div>
+      </main>
 
     </div>
 

@@ -228,6 +228,7 @@
     } else {
       const points = seed();
       if (!points.length) return;
+      button.classList.add("has-been-used");
       size();
       particles = points;
       lastTime = elapsed = 0;

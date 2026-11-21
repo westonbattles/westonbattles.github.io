@@ -1,38 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
-
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
-    <title>Portfolio</title>
-
-    <script type="text/javascript"
-        src="assets/js/jquery-3.7.1.min.js">
-    </script>
-    <script src="assets/js/navigation.js" defer></script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio | Weston Battles</title>
+    <link rel="icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="portfolio.css?v=3">
+    <script src="assets/js/navigation.js?v=2" defer></script>
   </head>
-  <body>
-
-    <div class=wrap>
-
-      <header class="site-header">
-        <nav class="topnav" id="movenavbar" aria-label="Main navigation"></nav>
-        <button type="button" id="navhider" aria-label="Toggle navigation" aria-controls="movenavbar" aria-expanded="true">
-          <img class="navarrow" src="assets/img/uparrow.png" alt="">
-        </button>
+  <body class="portfolio-page">
+    <header class="site-header">
+      <nav class="topnav" id="movenavbar" aria-label="Main navigation"></nav>
+      <button type="button" id="navhider" aria-label="Toggle navigation" aria-controls="movenavbar" aria-expanded="true"><img class="navarrow" src="assets/img/uparrow.png" alt=""></button>
+    </header>
+    <main class="projects">
+      <header class="projects-header">
+        <h1>Portfolio</h1>
+        <p>A collection of random shenanigans I've made</p>
       </header>
-
-
-      <div class="graybox", id="graybox">
-
-
-
+      <div class="projects-list" aria-label="Projects">
+        <a class="project" href="rust-graphics-engine.html">
+          <div class="project-image project-image-rust" aria-hidden="true"></div>
+          <div class="project-copy">
+            <h2>Rust 3D Graphics Engine</h2>
+            <p></p>3D graphics engine built in Rust</p>
+            <span class="project-action">View</span>
+          </div>
+        </a>
+        <a class="project" href="https://westonbattles.github.io/maze-demo/">
+          <div class="project-image project-image-empty" aria-hidden="true"></div>
+          <div class="project-copy">
+            <h2>Maze Generation Algorithm</h2>
+            <p>An interactive look at maze generation</p>
+            <span class="project-action">View</span>
+          </div>
+        </a>
       </div>
-
-    </div>
-
-
+    </main>
   </body>
 </html>

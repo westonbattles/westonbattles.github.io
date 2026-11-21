@@ -1,0 +1,90 @@
+.article-page {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #1b1d25;
+  color: #e3e3e8;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.article-page .site-header {
+  flex-shrink: 0;
+  height: 48px;
+  overflow: visible;
+  z-index: 1;
+  transition: height 250ms ease;
+}
+
+.article-page .site-header .topnav { height: 48px; line-height: normal; }
+.article-page .site-header:has(#navhider[aria-expanded="false"]) { height: 0; }
+
+.article-shell {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.article-shell > .back-link {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  color: #c5cbd5;
+  font-size: .9em;
+  text-decoration: none;
+}
+.article-shell > .back-link span { margin-right: 5px; }
+.article-shell > .back-link:hover { color: #fff; text-decoration: underline; }
+.article-shell > .back-link:focus-visible { outline: 2px solid #e3e3e8; outline-offset: 4px; }
+
+.article-panel {
+  box-sizing: border-box;
+  width: min(100%, 852px);
+  min-height: 0;
+  margin-inline: auto;
+  padding: 44px 48px 76px;
+  background: #282a35;
+  border: 1px solid #444650;
+  overflow-wrap: break-word;
+}
+
+.article-panel h1 {
+  margin: 0 0 1.5em;
+  text-align: center;
+  font-size: 1.17em;
+}
+
+.article-panel p { margin-block: 1.2em; }
+.article-panel hr {
+  border: none;
+  height: 2px;
+  background-color: #8ca3b1;
+}
+.article-panel a {
+  color: #c5cbd5;
+  text-decoration: underline;
+  text-decoration-color: #c5cbd566;
+  text-underline-offset: .16em;
+}
+.article-panel a:hover { color: #fff; text-decoration-color: currentColor; }
+.article-panel a:focus-visible { outline: 2px solid #e3e3e8; outline-offset: 4px; }
+.article-panel figure { margin: 1.9em 0; }
+.article-panel figure img { display: block; max-width: min(100%, 500px); height: auto; margin-inline: auto; }
+
+@media (max-width: 640px) {
+  .article-page { font-size: 16px; }
+  .article-shell > .back-link { top: 20px; left: 24px; }
+  .article-panel { width: calc(100% - 24px); padding: 68px 20px 48px; }
+}
+
+@media (min-width: 641px) and (max-width: 1100px) {
+  .article-panel { padding-top: 84px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-page .site-header { transition: none; }
+}

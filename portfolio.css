@@ -1,0 +1,95 @@
+.portfolio-page {
+  min-height: 100vh;
+  background: #1b1d25;
+  color: #f2f2f2;
+  font-family: ui-rounded, "Trebuchet MS", system-ui, sans-serif;
+}
+.portfolio-page .site-header {
+  display: grid;
+  grid-template-rows: 1fr;
+  overflow: visible;
+  z-index: 1;
+  transition: grid-template-rows 250ms ease;
+}
+.portfolio-page .site-header .topnav { min-height: 0; }
+.portfolio-page .site-header:has(#navhider[aria-expanded="false"]) { grid-template-rows: 0fr; }
+.projects {
+  max-width: 1050px;
+  min-height: calc(100vh - 48px);
+  margin: 0 auto;
+  padding: clamp(70px, 10vw, 135px) clamp(24px, 7vw, 80px) 120px;
+  background: #282a35;
+  border-inline: 1px solid #444650;
+}
+.projects-header { margin-bottom: clamp(48px, 7vw, 82px); }
+.projects-eyebrow, .project-category {
+  color: #b7cddd;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+.projects h1 {
+  margin: 18px 0;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 1.02;
+  letter-spacing: -.05em;
+}
+.projects h1 span { color: #b7cddd; }
+.projects-header > p:last-child, .project-lede {
+  margin: 0;
+  color: #c5c6cf;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  line-height: 1.6;
+}
+.projects-list { border-top: 1px solid #626570; }
+.project {
+  display: grid;
+  grid-template-columns: minmax(180px, 35%) 1fr;
+  gap: clamp(25px, 5vw, 60px);
+  align-items: center;
+  padding: 32px 0;
+  border-bottom: 1px solid #626570;
+  color: inherit;
+  text-decoration: none;
+  animation: project-enter .55s ease-out both;
+}
+.project:nth-child(2) { animation-delay: .1s; }
+.project-image {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #343947;
+  background-size: cover;
+  background-position: center;
+  transition: transform .25s ease, filter .25s ease;
+}
+.project-image-rust { background-image: url('assets/img/rust-road.png'); }
+.project-image-empty { background: #303440; }
+.project-copy h2 { margin: 10px 0; font-size: clamp(1.5rem, 2.6vw, 2.2rem); letter-spacing: -.025em; }
+.project-copy > p:not(.project-category) { margin: 0; color: #c5c6cf; font-size: 1.05rem; line-height: 1.6; }
+.project-category { margin: 0; }
+.project-action { display: inline-block; margin-top: 24px; color: #d8e5ed; font-size: .95rem; font-weight: 600; }
+.project:hover .project-image { transform: scale(1.025); filter: brightness(1.08); }
+.project:hover .project-action { text-decoration: underline; }
+.project:focus-visible, .back-link:focus-visible, .repo-link:focus-visible { outline: 2px solid #d8e5ed; outline-offset: 6px; }
+.back-link { display: inline-block; margin-bottom: 64px; color: #d8e5ed; text-decoration: none; }
+.back-link:hover { text-decoration: underline; }
+.project-detail h1 { max-width: 900px; }
+.project-detail-image { width: 100%; aspect-ratio: 16 / 9; margin-top: 55px; border-radius: 4px; background-color: #343947; background-size: cover; background-position: center; }
+.project-detail-body { max-width: 680px; padding-top: 45px; }
+.project-detail-body h2 { font-size: 1.5rem; }
+.project-detail-body p { color: #c5c6cf; font-size: 1.1rem; line-height: 1.7; }
+.repo-link { display: inline-block; margin-top: 10px; color: #d8e5ed; }
+@keyframes project-enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 600px) {
+  .project { grid-template-columns: 1fr; gap: 22px; padding: 26px 0 32px; }
+  .project-action { margin-top: 18px; }
+  .projects { padding-bottom: 80px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-page .site-header { transition: none; }
+  .project { animation: none; }
+  .project-image { transition: none; }
+}

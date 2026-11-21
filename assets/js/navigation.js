@@ -5,8 +5,6 @@ navigation.innerHTML = `
   <div class="topnavtext">
     <a href="portfolio.html">Portfolio</a>
     <a href="resume.pdf">Resume</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
   </div>
 `;
 
