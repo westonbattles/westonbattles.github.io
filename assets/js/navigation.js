@@ -4,7 +4,7 @@ navigation.innerHTML = `
   <a href="./"><img class="homeicon" src="assets/img/home_unselected.png" alt="Home"></a>
   <div class="topnavtext">
     <a href="portfolio.html">Portfolio</a>
-    <a href="resume2.pdf">Resume</a>
+    <a href="resume.pdf">Resume</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </div>
