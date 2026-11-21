@@ -1,0 +1,167 @@
+/* body shenanigans */
+body {
+  /* changes default value of body margin from 8 to 0*/
+  margin: 0px;
+
+  background-image: url('assets/img/background.jpg');
+  background-color: #282A35;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100%;
+
+  background-position: 0px 0px;
+}
+
+.wrap {
+  size: 100%;
+}
+
+.site-header {
+  --nav-toggle-size: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.homeicon {
+  padding: 8px 5px;
+  width: 28px;
+  height: auto;
+}
+
+
+/* Adds a black background to the menu bar and sets overflow
+to hidden meaning if text goes off the screen, it wont be shown */
+.topnav {
+  background-color: #282A35;
+  overflow: hidden;
+  padding-right: var(--nav-toggle-size);
+  transition: transform 250ms ease;
+}
+
+.topnav[inert] {
+  transform: translateY(-100%);
+}
+
+/* changes the properties of each <a> tag*/
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: 'Lucida Console', monospace;
+}
+
+.topnavtext a {
+    padding: 14px 16px;
+}
+
+
+.topnav a:hover {
+  background-color: #000;
+}
+
+.topnav a.active {
+  background-color: #ddd;
+  color: black;
+}
+
+.graybox {
+  size: 100%;
+  height: 500px;
+  margin-top: 36.62%;
+  background-color: #282A35;
+}
+
+.fullgraybox {
+  size: 100%;
+  height: 500px;
+  background-color: #282A35;
+}
+
+.navarrow {
+  width: 30px;
+  height: auto;
+  transition: transform 250ms ease;
+}
+
+#navhider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--nav-toggle-size);
+  height: var(--nav-toggle-size);
+  background-color: #282A35;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+#navhider:hover {
+  background-color: black;
+}
+
+#navhider[aria-expanded="false"] .navarrow {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topnav, .navarrow {
+    transition: none;
+  }
+}
+
+/* On smaller screens, where width is less than 670px, adjust the box to match */
+@media screen and (max-width: 670px) {
+  .graybox {margin-top: 33.62%;}
+}
+
+.name-window {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  height: 36.62vw;
+  overflow: hidden;
+}
+
+.name-window + .graybox { margin-top: 0; }
+
+#home-name {
+  margin: 0;
+  white-space: nowrap;
+  font-family: ui-rounded, "Trebuchet MS", system-ui, sans-serif;
+  font-size: clamp(2rem, 10.5vw, 12rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: white;
+  text-shadow: 0 2px 12px rgb(22 28 42 / 25%);
+}
+
+.name-baseline { display: inline-block; width: 0; height: 0; }
+.name-water { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.name-window.is-water h1 { opacity: 0; }
+.name-window.is-water canvas { pointer-events: auto; touch-action: none; cursor: grab; }
+.name-window.is-water canvas:active { cursor: grabbing; }
+
+.water-toggle {
+  position: absolute;
+  left: clamp(10px, 2vw, 30px);
+  bottom: clamp(8px, 1.6vw, 24px);
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgb(255 255 255 / 65%);
+  border-radius: 50%;
+  color: white;
+  background: rgb(30 36 48 / 65%);
+  cursor: pointer;
+}
+.water-toggle svg { display: block; width: 22px; margin: auto; }
+.water-toggle:hover, .water-toggle[aria-pressed="true"] { color: #282a35; background: white; }
+.water-toggle:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+
+@media (max-width: 670px) {
+  .name-window { height: max(148px, 33.62vw); }
+  .wrap:has(.name-window) .topnavtext a { padding: 14px clamp(3px, 1.4vw, 10px); }
+}

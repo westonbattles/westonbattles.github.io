@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+    <title>Contact</title>
+
+    <script type="text/javascript"
+        src="assets/js/jquery-3.7.1.min.js">
+    </script>
+    <script src="assets/js/navigation.js" defer></script>
+
+  </head>
+  <body>
+
+    <div class=wrap>
+
+      <header class="site-header">
+        <nav class="topnav" id="movenavbar" aria-label="Main navigation"></nav>
+        <button type="button" id="navhider" aria-label="Toggle navigation" aria-controls="movenavbar" aria-expanded="true">
+          <img class="navarrow" src="assets/img/uparrow.png" alt="">
+        </button>
+      </header>
+      
+      <!-- Contact Container -->
+      <div id="contact-container">
+        <div id="contact-title" class="title">Contact Me</div>
+        
+        <div id="contact-pngs">
+
+          <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/weston-battles-131373219/"><img src="assets/img/linkedin.png" id="contact-linkedin"></a>
+          <a target="_blank" rel="noopener noreferrer" href="https://github.com/westonbattles/"><img src="assets/img/github.png" id="contact-github"></a>
+          <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/westonbattles/"><img src="assets/img/twitter.png" id="contact-twitter"></a>
+          
+
+        </div>
+
+      </div>
+
+      <!-- Email Form Container -->
+      <div class="_graybox", id="_graybox">
+          
+        <div id="email-container">
+
+          <!-- Title for the email form -->
+          <div id="email-title" class="title">Email Me</div>
+
+          <!-- The actual email form itself -->
+          <form name="email-form" id="email-form" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLSfW32X1tZQAUN4t9OvA44njQVuRxbxZc60hp1J0Sfoxfw6HgA/formResponse?" target="hidden_iframe" onsubmit="submitted=true;">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="entry.1305355889" required>
+    
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="entry.1604513155" required>
+    
+            <label for="message">Message:</label>
+            <textarea id="message" name="entry.1877263463" required></textarea>
+    
+            <input id="email-send" type="submit" value="Send">
+          </form>
+
+          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
+
+          <script type="text/javascript">var submitted=false;</script>
+          <script type="text/javascript">
+            $('#email-form').on('submit', function(e) {
+              $('#email-form *').hide();
+              $('#email-form').append('Your submission has been processed...');
+              $('#email-title').css("margin-top", "187px");
+              $('#email-form').css("margin-top", "200px");
+            });
+          </script>
+
+        </div>
+      </div>
+
+    </div>
+
+
+  </body>
+</html>
