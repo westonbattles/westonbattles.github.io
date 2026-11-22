@@ -35,6 +35,9 @@
   line-height: 1.02;
   letter-spacing: -.05em;
 }
+.projects-header h1 { margin-bottom: 8px; }
+.projects-header { text-align: left; }
+.projects-header > p:last-child { padding-left: clamp(2px, .4vw, 6px); }
 .projects h1 span { color: #b7cddd; }
 .projects-header > p:last-child, .project-lede {
   margin: 0;
