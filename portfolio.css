@@ -5,21 +5,20 @@
   font-family: ui-rounded, "Trebuchet MS", system-ui, sans-serif;
 }
 .portfolio-page .site-header {
-  display: grid;
-  grid-template-rows: 1fr;
+  height: 48px;
   overflow: visible;
   z-index: 1;
-  transition: grid-template-rows 250ms ease;
+  transition: height 250ms ease;
 }
-.portfolio-page .site-header .topnav { min-height: 0; }
-.portfolio-page .site-header:has(#navhider[aria-expanded="false"]) { grid-template-rows: 0fr; }
+.portfolio-page .site-header .topnav { height: 48px; line-height: normal; }
+.portfolio-page .site-header:has(#navhider[aria-expanded="false"]) { height: 0; }
 .projects {
   max-width: 1050px;
   min-height: calc(100vh - 48px);
   margin: 0 auto;
   padding: clamp(36px, 5.5vw, 75px) clamp(24px, 7vw, 80px) 120px;
   background: #282a35;
-  border-inline: 1px solid #444650;
+  border: 1px solid #444650;
 }
 .projects-header { margin-bottom: clamp(48px, 7vw, 82px); }
 .projects-eyebrow, .project-category {
