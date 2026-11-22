@@ -237,7 +237,6 @@
     }
     windowBox.classList.toggle("is-water", !!particles);
     button.setAttribute("aria-pressed", String(!!particles));
-    button.title = particles ? "Restore Weston Battles" : "Turn the name into water";
   });
 
   function moveGrab(event) {
